@@ -26,7 +26,7 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 class WebDriverTestCase(unittest.TestCase):
     def addressSearch(self):
-        for i in range(100):
+        for i in range(10):
             driver = webdriver.Chrome(chromedriver)
             self.driver = driver
             self.driver.get('http://www.bgmenu.com')
@@ -49,7 +49,7 @@ class WebDriverTestCase(unittest.TestCase):
                        'Петър Протич 6',
                        'Буная 18',
                        'Ами буе 17-23', 'Младост-3 309', 'Преки път 13', 'Съзнание 36',
-                       'Красно село 211', 'ГМ Димитров 32', 'бул. България 49а', 'Jerusalem building 7',
+                       'Красно село 211', 'ГМ Димитров 32', 'бул. България 49а', 'Jerusalim 7',
                        'бул. Александър Малинов 91', 'ул. Хан Омуртаг 24', 'Казбек 10', 'Николай Лилиев 34',
                        'бул. Никола Вапцаров 53', 'ул. Бесарабия 15', 'ул. Блага Димитрова 1', 'Западна блок 106',
                        'Жеко Войвода 5',
