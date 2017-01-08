@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
 
-chromedriver = "/Users/marin/AppData/Local/web_drivers/chromedriver.exe"
+chromedriver = "C:/Users/Mechan1x/AppData/Local/web_drivers/chromedriver.exe"
 os.environ["webdriver.chrome.driver"] = chromedriver
 
 '''def register(self):
@@ -26,7 +26,7 @@ os.environ["webdriver.chrome.driver"] = chromedriver
 
 class WebDriverTestCase(unittest.TestCase):
     def addressSearch(self):
-        for i in range(100):
+        for i in range(5):
             driver = webdriver.Chrome(chromedriver)
             self.driver = driver
             self.driver.get('http://www.bgmenu.com')
