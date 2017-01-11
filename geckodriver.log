@@ -13596,3 +13596,5 @@ JavaScript warning: http://integration.bgmenu.com/assets/js/main_body.js?1483524
 1483528815516	addons.manager	DEBUG	Calling shutdown blocker for PreviousExperimentProvider
 1483528815520	addons.xpi	DEBUG	Notifying XPI shutdown observers
 1483528815525	addons.manager	DEBUG	Async provider shutdown done
+1483961888231	geckodriver	INFO	Listening on 127.0.0.1:50320
+1483961899259	geckodriver	INFO	Listening on 127.0.0.1:50330
