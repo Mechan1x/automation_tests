@@ -9,11 +9,11 @@ firefox_profile = webdriver.FirefoxProfile()
 firefox_profile.set_preference("general.useragent.override",
                                "Mozilla/5.0 (Android 4.4; Mobile; rv:41.0) Gecko/41.0 Firefox/41.0")
 
-firefox_capabilities = webdriver.DesiredCapabilities.FIREFOX()
+firefox_capabilities = webdriver.DesiredCapabilities.FIREFOX
 firefox_capabilities['marionette'] = True
-firefox_capabilities['binary'] = r'C:\Program Files (x86)\Mozilla Firefox\Firefox.exe'
+firefox_capabilities['binary'] = r"C:\Program Files (x86)\Mozilla Firefox\Firefox.exe"
 
-binary = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\Firefox.exe')
+binary = FirefoxBinary(r"C:\Program Files (x86)\Mozilla Firefox\Firefox.exe")
 
 
 class WebDriverTestCase(unittest.TestCase):
@@ -21,7 +21,7 @@ class WebDriverTestCase(unittest.TestCase):
         for i in range(10):
             driver = webdriver.Firefox()
             self.driver = driver
-            self.driver.get('http://www.bgmenu.com')
+            self.driver.get("https://integration.bgmenu.com")
             address_field = self.driver.find_element_by_css_selector(
                 '#main-search > div > div.input-hold.neighbourhood > input')
             streets = ['жк Гоце Делчев 15', 'жк Белите Брези 1', 'бул. Джеймс Баучър 3', 'жк Надежда 3',

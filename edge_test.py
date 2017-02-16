@@ -1,25 +1,24 @@
 import os
-import unittest
 from selenium import webdriver
+import unittest
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
 
-edgedriver = "/Users/marin/AppData/Local/web_drivers/MicrosoftWebDriver.exe"
+edgedriver = "/Users/Mechan1x/AppData/Local/web_drivers/MicrosoftWebDriver.exe"
 os.environ["webdriver.edgedriver.driver"] = edgedriver
 
 
 class WebDriverTestCase(unittest.TestCase):
     def addressSearch(self):
-        for i in range(3):
             driver = webdriver.Edge()
             self.driver = driver
-            self.driver.get('http://www.bgmenu.com')
-            address_field = self.driver.find_element_by_css_selector(
+            self.driver.get("https://integration.bgmenu.com")
+            sleep(4)
+            address_field = driver.find_element_by_css_selector(
                 '#main-search > div > div.input-hold.neighbourhood > input')
-            address_field.send_keys(Keys.LEFT_CONTROL + 'a')  # The type language should be EN for this to work
-            address_field.send_keys(Keys.BACKSPACE)
-            sleep(1)
+            # address_field.send_keys(Keys.LEFT_CONTROL + 'a')  # The type language should be EN for this to work
+            # address_field.send_keys(Keys.BACKSPACE)
             streets = ['жк Гоце Делчев 15', 'жк Белите Брези 1', 'бул. Джеймс Баучър 3', 'жк Надежда 3',
                        'ул. Ралевица 84',
                        'жк Младост 2 2', 'Бокар 12', 'жк Банишора 1', 'Централна ЖП гара 6', 'ул.Яна Язова 3',
@@ -56,6 +55,5 @@ class WebDriverTestCase(unittest.TestCase):
 
 
 x = WebDriverTestCase()
-x.setUp()
 # x.register()
 x.addressSearch()

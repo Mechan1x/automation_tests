@@ -13598,3 +13598,45 @@ JavaScript warning: http://integration.bgmenu.com/assets/js/main_body.js?1483524
 1483528815525	addons.manager	DEBUG	Async provider shutdown done
 1483961888231	geckodriver	INFO	Listening on 127.0.0.1:50320
 1483961899259	geckodriver	INFO	Listening on 127.0.0.1:50330
+1487276932439	geckodriver	INFO	Listening on 127.0.0.1:51735
+1487276934439	mozprofile::profile	INFO	Using profile path C:\Users\Mechan1x\AppData\Local\Temp\rust_mozprofile.UiNOKHPkatek
+1487276934443	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1487276934459	geckodriver::marionette	INFO	Connecting to Marionette on localhost:51744
+1487276935700	Marionette	INFO	Listening on port 51744
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jqu1487276957420	mozprofile::profile	INFO	Using profile path C:\Users\Mechan1x\AppData\Local\Temp\rust_mozprofile.wjFNZLkOqDhI
+1487276957423	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1487276957439	geckodriver::marionette	INFO	Connecting to Marionette on localhost:51841
+1487276959766	Marionette	INFO	Listening on port 51841
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jqu1487276978446	mozprofile::profile	INFO	Using profile path C:\Users\Mechan1x\AppData\Local\Temp\rust_mozprofile.dcS89j7NetEX
+1487276978450	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1487276978509	geckodriver::marionette	INFO	Connecting to Marionette on localhost:51943
+1487276980913	Marionette	INFO	Listening on port 51943
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+1487277017802	geckodriver	INFO	Listening on 127.0.0.1:52034
+1487277019811	mozprofile::profile	INFO	Using profile path C:\Users\Mechan1x\AppData\Local\Temp\rust_mozprofile.upLMNWdXp2cf
+1487277019814	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1487277019830	geckodriver::marionette	INFO	Connecting to Marionette on localhost:52041
+1487277021081	Marionette	INFO	Listening on port 52041
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js, line 1: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+JavaScript warning: http://bgmenu.com/assets/js/main_body.js?1486618707, line 1199: unreachable code after return statement
+JavaScript warning: http://ajax.googleapis.com/ajax/libs/jqu1487277040262	mozprofile::profile	INFO	Using profile path C:\Users\Mechan1x\AppData\Local\Temp\rust_mozprofile.f2U1X2S6kEPb
+1487277040266	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe
+1487277040283	geckodriver::marionette	INFO	Connecting to Marionette on localhost:52143
+1487277042092	Marionette	INFO	Listening 
+###!!! [Child][MessageChannel] Error: (msgtype=0x8E0007,name=PHttpChannel::Msg_Cancel) Channel closing: too late to send/recv, messages will be lost
+
+[Child 980] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+
+###!!! [Child][OnMaybeDequeueOne] Error: Channel closing: too late to send/recv, messages will be lost
+
+atement
+JavaScript error: chrome://marionette/content/listener.js, line 870: TypeError: can't access dead object

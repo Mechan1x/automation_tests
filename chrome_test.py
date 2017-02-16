@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
 
-chromedriver = "/Users/Marin/AppData/Local/web_drivers/chromedriver.exe"
+chromedriver = "/Users/Mechan1x/AppData/Local/web_drivers/chromedriver.exe"
 os.environ["webdriver.chrome.driver"] = chromedriver
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
