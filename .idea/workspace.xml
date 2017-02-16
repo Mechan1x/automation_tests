@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca64e481-5178-4cbe-a72b-de66313b6460" name="Default" comment="test_scripts&#10;&#10;test_scripts&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/automation_tests.iml" afterPath="$PROJECT_DIR$/.idea/automation_tests.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="ca64e481-5178-4cbe-a72b-de66313b6460" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome_test.py" afterPath="$PROJECT_DIR$/chrome_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/debug.log" afterPath="$PROJECT_DIR$/debug.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/edge_test.py" afterPath="$PROJECT_DIR$/edge_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/firefox_test.py" afterPath="$PROJECT_DIR$/firefox_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/geckodriver.log" afterPath="$PROJECT_DIR$/geckodriver.log" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -158,7 +151,7 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/firefox_test.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.appengine.AppEngineModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunManager" selected="Python tests.Edge Test">
     <configuration default="false" name="Unittests in chrome_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -556,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487254664160</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="test_scripts&#10;&#10;test_scripts&#10;">
+      <created>1487281497813</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1487281497813</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
