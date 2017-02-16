@@ -12,7 +12,7 @@ options.add_argument("--start-maximized")
 
 
 class WebDriverTestCase(unittest.TestCase):
-    def register(self):
+    def registrationTest(self):
         driver = webdriver.Chrome(chrome_options=options)
         self.driver = driver
         self.driver.get("https://integration.bgmenu.com")
@@ -27,7 +27,7 @@ class WebDriverTestCase(unittest.TestCase):
         registration_submit = self.driver.find_element_by_css_selector('#submit-btn')
         registration_submit.click()
 
-    def makeAnOrder(self):
+    def makeAnOrderTest(self):
         driver = webdriver.Chrome(chrome_options=options)
         self.driver = driver
         self.driver.get('http://integration.bgmenu.com')
@@ -44,5 +44,5 @@ class WebDriverTestCase(unittest.TestCase):
 
 
 x = WebDriverTestCase()
-# x.register()
-x.makeAnOrder()
+x.registrationTest()
+x.makeAnOrderTest()
