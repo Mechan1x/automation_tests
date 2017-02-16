@@ -2,6 +2,8 @@
   <dictionary name="marin">
     <words>
       <w>chromedriver</w>
+      <w>edgedriver</w>
+      <w>jerusalim</w>
       <w>webdriver</w>
     </words>
   </dictionary>

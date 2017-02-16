@@ -1,29 +1,25 @@
-from selenium import webdriver
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-from selenium.webdriver.common.keys import Keys
+import os
 import unittest
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
 
-firefox_profile = webdriver.FirefoxProfile()
-firefox_profile.set_preference("general.useragent.override",
-                               "Mozilla/5.0 (Android 4.4; Mobile; rv:41.0) Gecko/41.0 Firefox/41.0")
-
-firefox_capabilities = webdriver.DesiredCapabilities.FIREFOX()
-firefox_capabilities['marionette'] = True
-firefox_capabilities['binary'] = r'C:\Program Files (x86)\Mozilla Firefox\Firefox.exe'
-
-binary = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\Firefox.exe')
+edgedriver = "/Users/marin/AppData/Local/web_drivers/MicrosoftWebDriver.exe"
+os.environ["webdriver.edgedriver.driver"] = edgedriver
 
 
 class WebDriverTestCase(unittest.TestCase):
     def addressSearch(self):
-        for i in range(10):
-            driver = webdriver.Firefox()
+        for i in range(3):
+            driver = webdriver.Edge()
             self.driver = driver
             self.driver.get('http://www.bgmenu.com')
             address_field = self.driver.find_element_by_css_selector(
                 '#main-search > div > div.input-hold.neighbourhood > input')
+            address_field.send_keys(Keys.LEFT_CONTROL + 'a')  # The type language should be EN for this to work
+            address_field.send_keys(Keys.BACKSPACE)
+            sleep(1)
             streets = ['жк Гоце Делчев 15', 'жк Белите Брези 1', 'бул. Джеймс Баучър 3', 'жк Надежда 3',
                        'ул. Ралевица 84',
                        'жк Младост 2 2', 'Бокар 12', 'жк Банишора 1', 'Централна ЖП гара 6', 'ул.Яна Язова 3',
@@ -47,13 +43,13 @@ class WebDriverTestCase(unittest.TestCase):
                        'Жеко Войвода 5',
                        'Яна 1', 'бул. Александър Малинов 51', 'Балканджи Йово 9', 'Захари Зограф 32А',
                        'бул. Янко Сакъзов 34',
-                       'Деян Белишки 30', 'бул. Възкресение 87', 'Ген. Стоян Стоянов 68', 'ул. Перник 97',
+                       'Деян Белишки 30', 'бул. Възкресение 87', 'Стоян Стоянов 68', 'ул. Перник 97',
                        'ул. Ресенска Поляна 98']
 
             address_field.send_keys(random.choice(streets))
-            sleep(5)
+            sleep(2)
             address_field.send_keys(Keys.ARROW_DOWN)
-            sleep(3)
+            sleep(2)
             address_field.send_keys(Keys.ENTER)
             sleep(1)
             address_field.send_keys(Keys.ENTER)
