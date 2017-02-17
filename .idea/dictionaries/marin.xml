@@ -1,10 +1,11 @@
 <component name="ProjectDictionaryState">
-  <dictionary name="marin">
+  <dictionary name="Marin">
     <words>
-      <w>chromedriver</w>
-      <w>edgedriver</w>
-      <w>jerusalim</w>
-      <w>webdriver</w>
+      <w>addaddress</w>
+      <w>addaddresstest</w>
+      <w>editaddress</w>
+      <w>makeanordertest</w>
+      <w>registrationtest</w>
     </words>
   </dictionary>
 </component>
