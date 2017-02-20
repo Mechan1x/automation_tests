@@ -17,8 +17,7 @@ class WebDriverTestCase(unittest.TestCase):
             sleep(4)
             address_field = driver.find_element_by_css_selector(
                 '#main-search > div > div.input-hold.neighbourhood > input')
-            # address_field.send_keys(Keys.LEFT_CONTROL + 'a')  # The type language should be EN for this to work
-            # address_field.send_keys(Keys.BACKSPACE)
+            address_field.clear()
             streets = ['жк Гоце Делчев 15', 'жк Белите Брези 1', 'бул. Джеймс Баучър 3', 'жк Надежда 3',
                        'ул. Ралевица 84',
                        'жк Младост 2 2', 'Бокар 12', 'жк Банишора 1', 'Централна ЖП гара 6', 'ул.Яна Язова 3',
