@@ -16,7 +16,7 @@ class BasicTestCases:
     def driver_ini(self):
         driver = webdriver.Chrome(chrome_options=options)
         self.driver = driver
-        self.driver.get('https://new.bgmenu.com')
+        self.driver.get('https://bgmenu.com')
 
     def registration_test(self):
         register_button = self.driver.find_element_by_css_selector("ul.user-nav.no-login>li>a")
@@ -44,20 +44,19 @@ class BasicTestCases:
     def make_order_test(self):
         address_field = self.driver.find_element_by_css_selector(
             "#main-search > div > div.input-hold.neighbourhood > input")
-        sleep(3)
         address_field.clear()
-        streets = "Подуево 10"
-        sleep(4)
-        address_field.send_keys(Keys.ARROW_DOWN)
-        sleep(3)
-        address_field.send_keys(Keys.ENTER)
-        sleep(3)
-        address_field.send_keys(Keys.ENTER)
-        sleep(3)
+        streets = "Бул България 111"
         address_field.send_keys(streets)
+        sleep(2)
+        address_field.send_keys(Keys.ARROW_DOWN)
+        sleep(2)
+        address_field.send_keys(Keys.ENTER)
+        sleep(2)
+        address_field.send_keys(Keys.ENTER)
+        sleep(2)
         search_restaurant = self.driver.find_element_by_css_selector("#search")
         search_restaurant.send_keys("Annette")
-        sleep(3)
+        search_restaurant.send_keys(Keys.ENTER)
         selected_restaurant = self.driver.find_element_by_css_selector(
             "#result-list > li > div.place-info > div.place-header-wrapper > a > h2")
         selected_restaurant.click()
@@ -69,9 +68,10 @@ class BasicTestCases:
             continue_order = self.driver.find_element_by_css_selector(
                 "# general_popup_content > div.text-center > a.green_btn.continue-add-to-cart")
             continue_order.click()
-            meal_add.click()
+            meal_add.click() * 2
         except NoSuchElementException:
-            meal_add.click()
+            return
+            meal_add.click() * 2
 
         sleep(3)
         order_input = self.driver.find_element_by_css_selector(
@@ -81,7 +81,7 @@ class BasicTestCases:
         address_selector = self.driver.find_element_by_css_selector("#address_id")
         # order_submit = self.driver.find_element_by_css_selector(
         # "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
-        self.driver.implicitly_wait(2)
+        sleep(3)
         try:
             self.driver.find_element_by_css_selector(
                 "#cart-detiles-cont > div:nth-child(2) > div > div > div.address-not-supported > span")
@@ -180,7 +180,6 @@ class BasicTestCases:
                 "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
             order_submit.click()
 
-            # def payment_method_selection:
 
 
 web = BasicTestCases
@@ -191,4 +190,3 @@ web.make_order_test(web)
 # web.add_address_test(web)
 # web.edit_address_test(web)
 # web.reorder_from_history(web)
-# web.payment_method_selection(web)
