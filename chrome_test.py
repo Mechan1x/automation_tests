@@ -16,7 +16,7 @@ class BasicTestCases:
     def driver_ini(self):
         driver = webdriver.Chrome(chrome_options=options)
         self.driver = driver
-        self.driver.get('http://integration.bgmenu.com')
+        self.driver.get('https://new.bgmenu.com')
 
     def registration_test(self):
         register_button = self.driver.find_element_by_css_selector("ul.user-nav.no-login>li>a")
@@ -44,30 +44,43 @@ class BasicTestCases:
     def make_order_test(self):
         address_field = self.driver.find_element_by_css_selector(
             "#main-search > div > div.input-hold.neighbourhood > input")
-        streets = "жк Гоце Делчев 15"
-        address_field.send_keys(streets)
-        sleep(2)
+        sleep(3)
+        address_field.clear()
+        streets = "Подуево 10"
+        sleep(4)
         address_field.send_keys(Keys.ARROW_DOWN)
-        sleep(2)
+        sleep(3)
         address_field.send_keys(Keys.ENTER)
-        sleep(1)
+        sleep(3)
         address_field.send_keys(Keys.ENTER)
-        sleep(2)
-        restaurant_choice = self.driver.find_element_by_css_selector(
-            "#result-list > li:nth-child(1) > div.place-info > div.place-header-wrapper > a > h2")
-        restaurant_choice.click()
-        sleep(5)
+        sleep(3)
+        address_field.send_keys(streets)
+        search_restaurant = self.driver.find_element_by_css_selector("#search")
+        search_restaurant.send_keys("Annette")
+        sleep(3)
+        selected_restaurant = self.driver.find_element_by_css_selector(
+            "#result-list > li > div.place-info > div.place-header-wrapper > a > h2")
+        selected_restaurant.click()
         meal_add = self.driver.find_element_by_css_selector(
-            "#meal-84564 > form > div.item-details > div.item-add-to-car > a")
+            "#meal-2242 > form > div.item-details > div.item-add-to-car > a")
         meal_add.click()
+
+        try:
+            continue_order = self.driver.find_element_by_css_selector(
+                "# general_popup_content > div.text-center > a.green_btn.continue-add-to-cart")
+            continue_order.click()
+            meal_add.click()
+        except NoSuchElementException:
+            meal_add.click()
+
         sleep(3)
         order_input = self.driver.find_element_by_css_selector(
             "#container > section.page_content.clearfix > div:nth-child(4) > aside > div > section > a")
         order_input.click()
         sleep(3)
         address_selector = self.driver.find_element_by_css_selector("#address_id")
-        order_submit = self.driver.find_element_by_css_selector(
-            "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
+        # order_submit = self.driver.find_element_by_css_selector(
+        # "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
         self.driver.implicitly_wait(2)
         try:
             self.driver.find_element_by_css_selector(
@@ -76,13 +89,26 @@ class BasicTestCases:
             address_selector.send_keys(Keys.ARROW_DOWN)
             address_selector.send_keys(Keys.ENTER)
             sleep(3)
-            order_submit.click()
-        except NoSuchElementException:
-            sleep(3)
+            add_comment = self.driver.find_element_by_css_selector(
+                "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div.leave-comment > label > span")
+            add_comment.click()
+            comment_field = self.driver.find_element_by_css_selector("#order-comment")
+            comment_field.clear()
+            comment_field.send_keys("BGMENU ТЕСТ! НЕ ПРИГОТВЯЙТЕ!")
             order_submit = self.driver.find_element_by_css_selector(
                 "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
             order_submit.click()
-
+        except NoSuchElementException:
+            sleep(3)
+            add_comment = self.driver.find_element_by_css_selector(
+                "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div.leave-comment > label > span")
+            add_comment.click()
+            comment_field = self.driver.find_element_by_css_selector("#order-comment")
+            comment_field.clear()
+            comment_field.send_keys("BGMENU ТЕСТ! НЕ ПРИГОТВЯЙТЕ!")
+            order_submit = self.driver.find_element_by_css_selector(
+                "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
+            order_submit.click()
 
     def add_address_test(self):
         side_bar = self.driver.find_element_by_css_selector("#user-menu > div.pull-left.user-name")
@@ -154,12 +180,15 @@ class BasicTestCases:
                 "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
             order_submit.click()
 
+            # def payment_method_selection:
+
 
 web = BasicTestCases
 web.driver_ini(web)
 # web.registration_test(web)
 web.login_test(web)
-# web.make_order_test(web)
+web.make_order_test(web)
 # web.add_address_test(web)
 # web.edit_address_test(web)
-web.reorder_from_history(web)
+# web.reorder_from_history(web)
+# web.payment_method_selection(web)
