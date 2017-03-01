@@ -16,7 +16,7 @@ class BasicTestCases:
     def driver_ini(self):
         driver = webdriver.Chrome(chrome_options=options)
         self.driver = driver
-        self.driver.get('https://bgmenu.com')
+        self.driver.get("http://integration.bgmenu.com")
 
     def registration_test(self):
         register_button = self.driver.find_element_by_css_selector("ul.user-nav.no-login>li>a")
@@ -42,11 +42,11 @@ class BasicTestCases:
         login_submit.click()
 
     def make_order_test(self):
-        for i in range(50):
+        for i in range(20):
             address_field = self.driver.find_element_by_css_selector(
                 "#main-search > div > div.input-hold.neighbourhood > input")
             address_field.clear()
-            streets = "Бул България 111"
+            streets = "България 111"
             address_field.send_keys(streets)
             sleep(2)
             address_field.send_keys(Keys.ARROW_DOWN)
@@ -56,29 +56,27 @@ class BasicTestCases:
             address_field.send_keys(Keys.ENTER)
             sleep(2)
             search_restaurant = self.driver.find_element_by_css_selector("#search")
-            search_restaurant.send_keys("Annette")
+            search_restaurant.send_keys("Wok to Walk")
             search_restaurant.send_keys(Keys.ENTER)
             selected_restaurant = self.driver.find_element_by_css_selector(
                 "#result-list > li > div.place-info > div.place-header-wrapper > a > h2")
             selected_restaurant.click()
             meal_add = self.driver.find_element_by_css_selector(
-                "#meal-2242 > form > div.item-details > div.item-add-to-car > a")
+                "#meal-92197 > form > div.item-details > div.item-add-to-car > a")
             meal_add.click()
-            sleep(4)
+            sleep(3)
 
-            try:
+            '''try:
                 continue_order = self.driver.find_element_by_css_selector(
                     "#general_popup_content > div.text-center > a.green_btn.continue-add-to-cart")
                 continue_order.click()
                 sleep(3)
                 meal_add.click()
-                meal_add.click()
             except NoSuchElementException:
                 sleep(2)
-                meal_add.click()
-                meal_add.click()
+                meal_add.click()'''
 
-            sleep(3)
+            sleep(4)
             order_input = self.driver.find_element_by_css_selector(
                 "#container > section.page_content.clearfix > div:nth-child(4) > aside > div > section > a")
             order_input.click()
@@ -99,6 +97,10 @@ class BasicTestCases:
                 comment_field = self.driver.find_element_by_css_selector("#order-comment")
                 comment_field.clear()
                 comment_field.send_keys("BGMENU ТЕСТ! НЕ ПРИГОТВЯЙТЕ!")
+                online_payment = self.driver.find_element_by_css_selector(
+                    "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(3) > label > input")
+                online_payment.click()
+                sleep(2)
                 order_submit = self.driver.find_element_by_css_selector(
                     "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
                 order_submit.click()
@@ -110,12 +112,24 @@ class BasicTestCases:
                 comment_field = self.driver.find_element_by_css_selector("#order-comment")
                 comment_field.clear()
                 comment_field.send_keys("BGMENU ТЕСТ! НЕ ПРИГОТВЯЙТЕ!")
+                online_payment = self.driver.find_element_by_css_selector(
+                    "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(3) > label > input")
+                online_payment.click()
+                sleep(2)
                 order_submit = self.driver.find_element_by_css_selector(
                     "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
                 order_submit.click()
 
             sleep(2)
+            # Online payment gateway
 
+            full_name = self.driver.find_element_by_css_selector("#cardname")
+            full_name.send_keys("Marin Ivanov")
+            card_number = self.driver.find_element_by_css_selector("#cardnr")
+            card_number.send_keys("4378501030143369")
+            exp_selector = self.driver.find_element_by_css_selector("#expmonth")
+            exp_selector.click()
+            self.driver.find_element_by_css_selector("#expmonth > option:nth-child(12)").click()
             '''try:
                 self.driver.find_element_by_css_selector("#cart-detiles-cont > div:nth-child(3) > div > div > span > span")
                 self.driver.find_element_by_css_selector("#cart-detiles-cont > div:nth-child(3) > div > div > div:nth-child(3) > label").click()
@@ -127,6 +141,10 @@ class BasicTestCases:
             except NoSuchElementException:
                 order_submit.click()
                 sleep(2)'''
+            payment_submit = self.driver.find_element_by_css_selector(
+                "body > div.content > div > div.cr_tbl > div:nth-child(4) > input[type=\"submit\"]")
+            payment_submit.click()
+            sleep(3)
             self.driver.find_element_by_css_selector("#logo").click()
             sleep(2)
 
