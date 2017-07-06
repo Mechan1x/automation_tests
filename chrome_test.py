@@ -26,61 +26,33 @@ class BasicTestCases:
     def driver_ini(self):
         driver = webdriver.Chrome(chrome_options=options)
         self.driver = driver
-        self.driver.get("https://www128.imperiaonline.org")
+        self.driver.get("https://ihdev3.imperialhero.org/ihv2/public/")
 
-    def registration_test(self):
-        register_button = self.driver.find_element_by_css_selector(
-            "#content > div > div.register-wraper.fleft > div.centered > a")
-        register_button.click()
-        sleep(1)
-        username_input = self.driver.find_element_by_css_selector("#reg-user")
-        username_input.send_keys("test_user13")
-        pass_input = self.driver.find_element_by_css_selector("#reg-pass")
-        pass_input.send_keys("testtest")
-        email_input = self.driver.find_element_by_css_selector("#reg-email")
-        email_input.send_keys("marin.ivanov@imperiaonline.org")
-        registration_submit = self.driver.find_element_by_css_selector("#register")
-        registration_submit.click()
-        if self.driver.current_url == "https://www141.imperiaonline.org/imperia/game_v6/game/village.php":
-            logging.info("Registration test is passed!")
-        else:
-            logging.error("Registration test failed!")
+    def chat_test(self):
+        for i in range(0, 3):
+            usernames = ["marinski.tester", "mtest1", "mtest2"]
+            username_input = self.driver.find_element_by_xpath(
+                "/html/body/div[1]/div[3]/div/div[2]/div[2]/form/input[1]")
+            username_input.send_keys(random.choice(usernames))
+            pass_input = self.driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/form/input[2]")
+            pass_input.send_keys("testtest123")
+            login_submit = self.driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/div[2]/div[2]/form/button")
+            login_submit.click()
+            sleep(8)
+            for x in range(0, 3):
+                input_selector = self.driver.find_element_by_css_selector("#chat-message-input")
+                input_selector.send_keys("test_script_chrome")
+                chat_message_submit = self.driver.find_element_by_css_selector("#chat-message-input")
+                chat_message_submit.send_keys(Keys.ENTER)
+            driver = webdriver.Chrome(chrome_options=options)
+            self.driver = driver
+            self.driver.get("https://ihdev3.imperialhero.org/ihv2/public/")
+            sleep(4)
 
-    def login_test(self):
-        username_input = self.driver.find_element_by_css_selector("#login-user")
-        username_input.send_keys("test_user13")
-        pass_input = self.driver.find_element_by_css_selector("#login-pass")
-        pass_input.send_keys("testtest")
-        login_submit = self.driver.find_element_by_css_selector("#login-button-wrapper > input")
-        login_submit.click()
-        sleep(2)
-        ftl_url = self.driver.current_url
-        correct_url = ".imperiaonline.org/imperia/game_v6/game/village.php"
-        if correct_url in ftl_url:
-            logging.info("Login test is passed!")
-        else:
-            logging.error("Login test failed!")
-        sleep(3)
-
-    def tutorial_1(self):
-        screen_1 = self.driver.find_element_by_css_selector
-        ("#begin-tutorial-wrapper > div.tutorial-order.centered > div > button")
-        screen_1.click()
-        t_quest_1_accept = self.driver.find_element_by_css_selector(
-            "#messageboxtutorialWindow > div > div.tutorial-content > div.tutorial-order.centered > div > button")
-        t_quest_1_accept.click()
-        sleep(1)
-        welcome_back_m = self.driver.find_element_by_css_selector(
-            "# messageboxemail_promo_notification > div > div > div.centered-block.fnone > button")
-        welcome_back_m.click()
-        t_building_1 = self.driver.find_element_by_css_selector("//*[@id="
-        tutorialWindow
-        "]")
-        t_building_1.click()
-
+    def teardown(self):
+        self.driver.quit()
 
 web = BasicTestCases
 web.driver_ini(web)
-# web.registration_test(web)
-web.login_test(web)
-web.tutorial_1(web)
+web.chat_test(web)
+web.teardown(web)
