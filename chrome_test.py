@@ -7,7 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 import random
 import logging
 
-chromedriver = "C:/Users/Mechan1x/web_drivers/chromedriver.exe"
+chromedriver = "C:/Users/User_/webdrivers/chromedriver.exe"
 os.environ["webdriver.chrome.driver"] = chromedriver
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
@@ -63,9 +63,9 @@ class BasicTestCases:
         sleep(3)
 
     def tutorial_1(self):
-        # screen_1 = self.driver.find_element_by_css_selector
-        # ("#begin-tutorial-wrapper > div.tutorial-order.centered > div > button")
-        # screen_1.click()
+        screen_1 = self.driver.find_element_by_css_selector
+        ("#begin-tutorial-wrapper > div.tutorial-order.centered > div > button")
+        screen_1.click()
         t_quest_1_accept = self.driver.find_element_by_css_selector(
             "#messageboxtutorialWindow > div > div.tutorial-content > div.tutorial-order.centered > div > button")
         t_quest_1_accept.click()
