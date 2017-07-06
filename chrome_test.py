@@ -5,225 +5,82 @@ from selenium.webdriver.support.ui import WebDriverWait
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 import random
+import logging
 
-chromedriver = "/Users/Mechan1x/AppData/Local/web_drivers/chromedriver.exe"
+chromedriver = "C:/Users/Mechan1x/web_drivers/chromedriver.exe"
 os.environ["webdriver.chrome.driver"] = chromedriver
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
+options.add_experimental_option('prefs', {
+    'credentials_enable_service': False,
+    'profile': {
+        'password_manager_enabled': False
+    }
+})
+
+LOG_FILENAME = "test_results.log"
+logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
 
 
 class BasicTestCases:
     def driver_ini(self):
         driver = webdriver.Chrome(chrome_options=options)
         self.driver = driver
-        self.driver.get("http://integration.bgmenu.com")
+        self.driver.get("https://www128.imperiaonline.org")
 
     def registration_test(self):
-        register_button = self.driver.find_element_by_css_selector("ul.user-nav.no-login>li>a")
+        register_button = self.driver.find_element_by_css_selector(
+            "#content > div > div.register-wraper.fleft > div.centered > a")
         register_button.click()
-        name_input = self.driver.find_element_by_css_selector("#fullname")
-        name_input.send_keys("test user")
-        email_input = self.driver.find_element_by_css_selector("#email")
-        email_input.send_keys("random_email@gmail.com")
-        pass_input = self.driver.find_element_by_css_selector("#password")
-        pass_input.send_keys("password1")
-        registration_submit = self.driver.find_element_by_css_selector("#submit-btn")
+        sleep(1)
+        username_input = self.driver.find_element_by_css_selector("#reg-user")
+        username_input.send_keys("test_user13")
+        pass_input = self.driver.find_element_by_css_selector("#reg-pass")
+        pass_input.send_keys("testtest")
+        email_input = self.driver.find_element_by_css_selector("#reg-email")
+        email_input.send_keys("marin.ivanov@imperiaonline.org")
+        registration_submit = self.driver.find_element_by_css_selector("#register")
         registration_submit.click()
+        if self.driver.current_url == "https://www141.imperiaonline.org/imperia/game_v6/game/village.php":
+            logging.info("Registration test is passed!")
+        else:
+            logging.error("Registration test failed!")
 
     def login_test(self):
-        login_button = self.driver.find_element_by_css_selector("#user-nav > ul > li:nth-child(2) > a")
-        login_button.click()
-        sleep(2)
-        email_input = self.driver.find_element_by_css_selector("#email")
-        email_input.send_keys("m.ivanov@oliviera.ro")
-        pass_input = self.driver.find_element_by_css_selector("#password")
+        username_input = self.driver.find_element_by_css_selector("#login-user")
+        username_input.send_keys("test_user13")
+        pass_input = self.driver.find_element_by_css_selector("#login-pass")
         pass_input.send_keys("testtest")
-        login_submit = self.driver.find_element_by_css_selector("#submit-btn")
+        login_submit = self.driver.find_element_by_css_selector("#login-button-wrapper > input")
         login_submit.click()
-
-    def make_order_test(self):
-        for i in range(20):
-            address_field = self.driver.find_element_by_css_selector(
-                "#main-search > div > div.input-hold.neighbourhood > input")
-            address_field.clear()
-            streets = "България 111"
-            address_field.send_keys(streets)
-            sleep(2)
-            address_field.send_keys(Keys.ARROW_DOWN)
-            sleep(2)
-            address_field.send_keys(Keys.ENTER)
-            sleep(2)
-            address_field.send_keys(Keys.ENTER)
-            sleep(2)
-            search_restaurant = self.driver.find_element_by_css_selector("#search")
-            search_restaurant.send_keys("Wok to Walk")
-            search_restaurant.send_keys(Keys.ENTER)
-            selected_restaurant = self.driver.find_element_by_css_selector(
-                "#result-list > li > div.place-info > div.place-header-wrapper > a > h2")
-            selected_restaurant.click()
-            meal_add = self.driver.find_element_by_css_selector(
-                "#meal-92197 > form > div.item-details > div.item-add-to-car > a")
-            meal_add.click()
-            sleep(3)
-
-            '''try:
-                continue_order = self.driver.find_element_by_css_selector(
-                    "#general_popup_content > div.text-center > a.green_btn.continue-add-to-cart")
-                continue_order.click()
-                sleep(3)
-                meal_add.click()
-            except NoSuchElementException:
-                sleep(2)
-                meal_add.click()'''
-
-            sleep(4)
-            order_input = self.driver.find_element_by_css_selector(
-                "#container > section.page_content.clearfix > div:nth-child(4) > aside > div > section > a")
-            order_input.click()
-            sleep(3)
-            address_selector = self.driver.find_element_by_css_selector("#address_id")
-            sleep(3)
-
-            try:
-                self.driver.find_element_by_css_selector(
-                    "#cart-detiles-cont > div:nth-child(2) > div > div > div.address-not-supported > span")
-                address_selector.click()
-                address_selector.send_keys(Keys.ARROW_DOWN)
-                address_selector.send_keys(Keys.ENTER)
-                sleep(3)
-                add_comment = self.driver.find_element_by_css_selector(
-                    "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div.leave-comment > label > span")
-                add_comment.click()
-                comment_field = self.driver.find_element_by_css_selector("#order-comment")
-                comment_field.clear()
-                comment_field.send_keys("BGMENU ТЕСТ! НЕ ПРИГОТВЯЙТЕ!")
-                online_payment = self.driver.find_element_by_css_selector(
-                    "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(3) > label > input")
-                online_payment.click()
-                sleep(2)
-                order_submit = self.driver.find_element_by_css_selector(
-                    "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
-                order_submit.click()
-            except NoSuchElementException:
-                sleep(3)
-                add_comment = self.driver.find_element_by_css_selector(
-                    "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div.leave-comment > label > span")
-                add_comment.click()
-                comment_field = self.driver.find_element_by_css_selector("#order-comment")
-                comment_field.clear()
-                comment_field.send_keys("BGMENU ТЕСТ! НЕ ПРИГОТВЯЙТЕ!")
-                online_payment = self.driver.find_element_by_css_selector(
-                    "#cart-detiles-cont > div.main-content-ordered > div:nth-child(2) > div:nth-child(2) > ul > li:nth-child(3) > label > input")
-                online_payment.click()
-                sleep(2)
-                order_submit = self.driver.find_element_by_css_selector(
-                    "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
-                order_submit.click()
-
-            sleep(2)
-            # Online payment gateway
-
-            full_name = self.driver.find_element_by_css_selector("#cardname")
-            full_name.send_keys("Marin Ivanov")
-            card_number = self.driver.find_element_by_css_selector("#cardnr")
-            card_number.send_keys("4378501030143369")
-            exp_selector = self.driver.find_element_by_css_selector("#expmonth")
-            exp_selector.click()
-            self.driver.find_element_by_css_selector("#expmonth > option:nth-child(12)").click()
-            '''try:
-                self.driver.find_element_by_css_selector("#cart-detiles-cont > div:nth-child(3) > div > div > span > span")
-                self.driver.find_element_by_css_selector("#cart-detiles-cont > div:nth-child(3) > div > div > div:nth-child(3) > label").click()
-                sleep(2)
-                self.driver.find_element_by_css_selector("#cart-detiles-cont > div:nth-child(3) > div > div > div:nth-child(1) > label").click()
-                sleep(2)
-                order_submit.click()
-                sleep(3)
-            except NoSuchElementException:
-                order_submit.click()
-                sleep(2)'''
-            payment_submit = self.driver.find_element_by_css_selector(
-                "body > div.content > div > div.cr_tbl > div:nth-child(4) > input[type=\"submit\"]")
-            payment_submit.click()
-            sleep(3)
-            self.driver.find_element_by_css_selector("#logo").click()
-            sleep(2)
-
-    def add_address_test(self):
-        side_bar = self.driver.find_element_by_css_selector("#user-menu > div.pull-left.user-name")
-        side_bar.click()
-        delivery_address = self.driver.find_element_by_css_selector("#user-menu-dd > ul > li:nth-child(2) > a")
-        delivery_address.click()
-        add_address = self.driver.find_element_by_css_selector(
-            "#user-profil > div > div.col-md-8 > div > div.btn-submit.text-center > button")
-        add_address.click()
-        city_select = self.driver.find_element_by_css_selector("#city_id")
-        city_select.click()
-        city_select.send_keys(Keys.ARROW_DOWN)
-        city_select.send_keys(Keys.ENTER)
-        street_select = self.driver.find_element_by_css_selector("#street")
-        street_select.send_keys("Бул България")
-        num_select = self.driver.find_element_by_css_selector("#street_number")
-        num_select.send_keys("111")
-        save_address = self.driver.find_element_by_css_selector("#toggle-add-address > div > input")
-        save_address.click()
-
-    def edit_address_test(self):
-        side_bar = self.driver.find_element_by_css_selector("#user-menu > div.pull-left.user-name")
-        side_bar.click()
-        delivery_address = self.driver.find_element_by_css_selector("#user-menu-dd > ul > li:nth-child(2) > a")
-        delivery_address.click()
-        address_to_edit = self.driver.find_element_by_css_selector(
-            "#user-profil > div > div.col-md-8 > div > div.address-list.clearfix > ul > li:nth-child(6) > div > form:nth-child(1) > a")
-        address_to_edit.click()
-        street_select = self.driver.find_element_by_css_selector("#street")
-        street_select.clear()
-        street_select.send_keys("Пирински проход")
-        num_select = self.driver.find_element_by_css_selector("#street_number")
-        num_select.clear()
-        num_select.send_keys("10")
-        save_edited_address = self.driver.find_element_by_css_selector("#toggle-add-address > div > input")
-        save_edited_address.click()
-
-    def reorder_from_history(self):
-        side_bar = self.driver.find_element_by_css_selector("#user-menu > div.pull-left.user-name")
-        side_bar.click()
-        order_history = self.driver.find_element_by_css_selector("#user-menu-dd > ul > li:nth-child(4) > a")
-        order_history.click()
-        orders = [
-            "#user-profil > div > div.col-md-8 > div > div.history-list > ul > li:nth-child(5) > form > div.order-submit-btn > a",
-            "#user-profil > div > div.col-md-8 > div > div.history-list > ul > li:nth-child(6) > form > div.order-submit-btn > a",
-            "#user-profil > div > div.col-md-8 > div > div.history-list > ul > li:nth-child(7) > form > div.order-submit-btn > a",
-            "#user-profil > div > div.col-md-8 > div > div.history-list > ul > li:nth-child(8) > form > div.order-submit-btn > a"]
-        selected_order = self.driver.find_element_by_css_selector((random.choice(orders)))
-        selected_order.click()
         sleep(2)
-        address_selector = self.driver.find_element_by_css_selector("#address_id")
-        order_submit = self.driver.find_element_by_css_selector(
-            "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
-        self.driver.implicitly_wait(2)
-        try:
-            self.driver.find_element_by_css_selector(
-                "#cart-detiles-cont > div:nth-child(2) > div > div > div.address-not-supported > span")
-            address_selector.click()
-            address_selector.send_keys(Keys.ARROW_DOWN)
-            address_selector.send_keys(Keys.ENTER)
-            sleep(3)
-            order_submit = self.driver.find_element_by_css_selector(
-                "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
-            order_submit.click()
+        ftl_url = self.driver.current_url
+        correct_url = ".imperiaonline.org/imperia/game_v6/game/village.php"
+        if correct_url in ftl_url:
+            logging.info("Login test is passed!")
+        else:
+            logging.error("Login test failed!")
+        sleep(3)
 
-        except NoSuchElementException:
-            sleep(3)
-            order_submit = self.driver.find_element_by_css_selector(
-                "#cart-detiles-cont > div.main-content-ordered > div.row > div.col-md-3 > a")
-            order_submit.click()
+    def tutorial_1(self):
+        # screen_1 = self.driver.find_element_by_css_selector
+        # ("#begin-tutorial-wrapper > div.tutorial-order.centered > div > button")
+        # screen_1.click()
+        t_quest_1_accept = self.driver.find_element_by_css_selector(
+            "#messageboxtutorialWindow > div > div.tutorial-content > div.tutorial-order.centered > div > button")
+        t_quest_1_accept.click()
+        sleep(1)
+        welcome_back_m = self.driver.find_element_by_css_selector(
+            "# messageboxemail_promo_notification > div > div > div.centered-block.fnone > button")
+        welcome_back_m.click()
+        t_building_1 = self.driver.find_element_by_css_selector("//*[@id="
+        tutorialWindow
+        "]")
+        t_building_1.click()
 
 
 web = BasicTestCases
 web.driver_ini(web)
 # web.registration_test(web)
 web.login_test(web)
-web.make_order_test(web)
-# web.add_address_test(web)
-# web.edit_address_test(web)
-# web.reorder_from_history(web)
+web.tutorial_1(web)

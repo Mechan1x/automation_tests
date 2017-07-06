@@ -2,9 +2,14 @@
   <dictionary name="Mechan1x">
     <words>
       <w>bgmenu</w>
+      <w>chromedriver</w>
+      <w>imperia</w>
+      <w>imperiaonline</w>
       <w>logintest</w>
       <w>mechan</w>
+      <w>prefs</w>
       <w>registrationtest</w>
+      <w>testtest</w>
     </words>
   </dictionary>
 </component>
